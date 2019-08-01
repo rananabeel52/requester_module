@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <template id="sample_web_page" >
+            <t t-call="web.html_container">
+                <div class="page">
+                    <div class="row">
+                        <div class="jumbotron" style="margin: 0 auto; ">
+                            <div>
+                                <h1 style="text-align:center;margin-bottom:50px;">Web Page</h1>
+                            </div>
+                            <form id="form_request_text" action="/requests/new" method="POST" class="col-12"
+                                  style="width:500px;height:auto;text-align:center;">
+                                <div>
+                                    <h3 style="text-align:center;margin-bottom:50px;">Fill Request Data</h3>
+                                </div>
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                <div class="row">
+                                    <div class="col-sm-12 mt24 text-center">
+                                        <label for="name">Name:</label>
+                                        <input type="text" class="form-control" name="name" style="text-align:center;"/>
+                                    </div>
+                                    <div class="col-sm-12 mt24 text-center">
+                                        <label for="phone_number">Phone Number:</label>
+                                        <input type="text" class="form-control" name="phone_number" style="text-align:center;"/>
+                                    </div>
+                                    <div class="col-sm-12 mt24 text-center">
+                                        <label for="email">Email:</label>
+                                        <input type="text" class="form-control" name="email" style="text-align:center;"/>
+                                    </div>
+                                    <div class="col-sm-12 mt24 text-center">
+                                        <label for="range">Range:</label>
+                                        <input type="text" class="form-control" name="range" style="text-align:center;"/>
+                                    </div>
+                                    <div class="col-sm-12 mt24 text-center">
+                                        <label for="person">Person:</label>
+                                        <input type="text" class="form-control" name="person" style="text-align:center;"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 mt24 text-center">
+                                        <a class="btn btn-default request-new-btn-back" onclick="window.history.back();">Back</a>
+                                        <button class="btn btn-primary request-new-btn-next" type="submit">Create</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+    </data>
+</odoo>

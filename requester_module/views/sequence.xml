@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <record id="sequence_id" model="ir.sequence">
+      <field name="name">Name</field>
+      <field name="code">code</field>
+      <field name="padding">4</field>
+      <field name="prefix">Seq-</field>
+      <field name="suffix"></field>
+    </record>
+  </data>
+</odoo>

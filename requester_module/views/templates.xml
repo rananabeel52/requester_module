@@ -1,0 +1,36 @@
+<odoo>
+    <data>
+        <template id="test_form">
+            <t t-call="website.layout">
+                <body>
+                    <div class="container">
+                        <div class="page">
+                            <div class="row">
+                                <form action="/requester_module/test" method="post" data-success_page="/thanks" class="s_website_form form-horizontal container-fluid mt32" >
+                                    # add the input fields here
+                                    <div class="form-group form-field o_website_form_required_custom">
+                                        <label class="col-md-3 col-sm-4 control-label" for="name">Name</label>
+                                        <div class="col-md-7 col-sm-8">
+                                            <input type="text" class="form-control o_website_form_input" name="name" required=""/>
+                                            <input type="text" class="form-control o_website_form_input" name="phone_number" required=""/>
+                                            <input type="text" class="form-control o_website_form_input" name="email" required=""/>
+                                            <input type="text" class="form-control o_website_form_input" name="range" required=""/>
+                                            <input type="text" class="form-control o_website_form_input" name="person" required=""/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-offset-3 col-sm-offset-4 col-sm-8 col-md-7">
+                                            <span id='submit' class="btn btn-primary btn-lg o_website_form_send">Submit</span>
+                                            <span id="o_website_form_result"></span>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </body>
+
+            </t>
+        </template>
+    </data>
+</odoo>

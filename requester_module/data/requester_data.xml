@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="mt_requestm_created" model="mail.message.subtype">
+            <field name="name">Request Has Been Created</field>
+            <field name="res_model">requester.module</field>
+            <field name="default" eval="False"/>
+            <field name="hidden" eval="True"/>
+            <field name="description">Request Has Been Created</field>
+        </record>
+    </data>
+</odoo>
+
+

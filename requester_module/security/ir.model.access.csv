@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_requester_module1,Manager_user_requester_module,model_requester_module,requester_group_manager_two,1,1,1,1
+access_requester_module2,Manager_two_requester_module,model_requester_module,requester_group_user,1,1,1,1

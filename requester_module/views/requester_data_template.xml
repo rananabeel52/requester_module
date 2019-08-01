@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="requester_data_template" name="Requester Data List">
+        <div id="wrap" class="container">
+            <h1>Requester Data</h1>
+            <t t-foreach="requesterData" t-as="data">
+                <div class="row">
+                    <span t-field="data.req_name" />
+                    <span t-field="data.phone" />
+                    <span t-field="data.email" />
+                    <span t-field="data.range" />
+                    <span t-field="data.person" />
+                </div>
+            </t>
+        </div>
+    </template>
+</odoo>
