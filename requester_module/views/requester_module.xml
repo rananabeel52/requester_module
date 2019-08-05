@@ -8,6 +8,7 @@
         <form string="Requester Module Form">
           <header>
             <button name="send" type="object" states="draft" string="Check and Send" class="oe_highlight" groups="requester_module.requester_group_user"/>
+            <button name="create_customer" states="confirm_request" type="object" string="Create Customer" class="oe_highlight" groups="requester_module.requester_group_manager_two"/>
             <button name="confirm_request" states="send_request" type="object" string="Confirm Request" class="oe_highlight" groups="requester_module.requester_group_manager_two"/>
             <field name="state" widget="statusbar" statusbar_visible="draft,send_request,confirm_request"/>
           </header>
@@ -34,23 +35,38 @@
       </field>
 
     </record>
-        <record id="mt_requester_validated" model="mail.message.subtype">
-          <field name="name">Created</field>
-          <field name="res_model">requester.module</field>
-          <field name="default" eval="True"/>
-          <field name="description">Record Created</field>
-        </record>
+    <record id="mt_requester_validated" model="mail.message.subtype">
+      <field name="name">Created</field>
+      <field name="res_model">requester.module</field>
+      <field name="default" eval="True"/>
+      <field name="description">Record Created</field>
+    </record>
     <record id="requester_module_tree" model="ir.ui.view">
       <field name="name">Requester Module Tree View</field>
       <field name="model">requester.module</field>
       <field name="arch" type="xml">
         <tree string="Requester Tree View" default_order="id desc">
+          <field name="name"/>
           <field name="req_name"/>
           <field name="phone"/>
           <field name="email"/>
           <field name="range"/>
           <field name="person"/>
         </tree>
+      </field>
+    </record>
+    <record id="requester_module_search" model="ir.ui.view">
+      <field name="name">Requester View Search View</field>
+      <field name="model">requester.module</field>
+      <field name="arch" type="xml">
+        <search string="Search View">
+          <field name="name"/>
+          <field name="req_name"/>
+          <field name="email"/>
+          <filter string="Draft State" name="draft_state" domain="[('state','=','draft')]"/>
+          <filter string="Send State" name="draft_state" domain="[('state','=','send_request')]"/>
+          <filter string="Confirm State" name="draft_state" domain="[('state','=','confirm_request')]"/>
+        </search>
       </field>
     </record>
     <record model="ir.ui.view" id="view_requester_module_kanban">
@@ -69,7 +85,7 @@
                   <div class="o_kanban_record_headings mt4">
                     <strong class="o_kanban_record_title"><span><t t-esc="record.req_name.value"/></span></strong>
                   </div>
-                  <strong><field name="email"/></strong>
+                  <strong><field name="person"/></strong>
                 </div>
                 <div class="o_kanban_record_bottom">
                   <div class="oe_kanban_bottom_left text-muted">
@@ -85,19 +101,26 @@
         </kanban>
       </field>
     </record>
+    <record model="ir.ui.view" id="view_sale_order_graph">
+      <field name="name">requester.module.graph</field>
+      <field name="model">requester.module</field>
+      <field name="arch" type="xml">
+        <graph string="Requester Module Graph">
+          <field name="req_name"/>
+          <field name="price" type="measure"/>
+        </graph>
+      </field>
+    </record>
     <record id="requester_module_action" model="ir.actions.act_window">
       <field name="name">Requester Module</field>
       <field name="type">ir.actions.act_window</field>
       <field name="res_model">requester.module</field>
-      <field name="view_mode">tree,form,kanban</field>
+      <field name="view_mode">tree,form,kanban,graph</field>
       <field name="help" type="html">
         <p class="oe_view_nocontent_create">
         </p><p>
       </p>
       </field>
     </record>
-    <menuitem id="requester_module_root" name="Requester Module" sequence="1"/>
-    <menuitem id="requester_module_catg1" name="Data" parent="requester_module_root" action="requester_module_action" sequence="1"/>
-
   </data>
 </odoo>

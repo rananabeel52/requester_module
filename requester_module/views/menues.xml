@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem id="requester_module_root"
+                  name="Customer Request"
+                  sequence="1"
+                  web_icon="requester_module,static/description/icon.png" />
+        <menuitem id="requester_module_catg1"
+                  name="Requests"
+                  parent="requester_module_root"
+                  action="requester_module_action"
+                  sequence="1"/>
+    </data>
+</odoo>

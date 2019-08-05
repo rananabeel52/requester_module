@@ -1,10 +1,13 @@
 <?xml version="1.0" ?>
 <odoo>
     <data>
+
+        <!--  Category to organize the security groups   -->
         <record id="requester_module_category" model="ir.module.category">
             <field name="name">Requester</field>
         </record>
 
+        <!--  Security Group for Manager One   -->
         <record id="requester_group_user" model="res.groups">
             <field name="name">User</field>
             <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
@@ -12,12 +15,14 @@
             <field name="category_id" ref="requester_module.requester_module_category"/>
         </record>
 
+        <!--  Security Group for Manager Two   -->
         <record id="requester_group_manager_two" model="res.groups">
             <field name="name">Manager</field>
             <field name="implied_ids" eval="[(4, ref('requester_module.requester_group_user'))]"/>
             <field name="category_id" ref="requester_module.requester_module_category"/>
         </record>
 
+        <!--  Row Level Security Rules for Manager One   -->
         <data noupdate="1">
             <record id="requester_user_rule" model="ir.rule">
                 <field name="name">User Access</field>
@@ -28,6 +33,8 @@
                 <field name="groups" eval="[(4,ref('requester_group_user'))]"/>
             </record>
         </data>
+
+        <!--  Row Level Security Rules for Manager Two  -->
         <data noupdate="1">
             <record id="requester_manager_rule" model="ir.rule">
                 <field name="name">Manager Access</field>
@@ -38,6 +45,20 @@
                 <field name="groups" eval="[(4,ref('requester_group_manager_two'))]"/>
             </record>
         </data>
+
+        <!-- Hides the Existing Menu items -->
+        <record id="make_invisible" model="res.groups">
+            <field name="name">Invisible</field>
+        </record>
+        <record model="ir.ui.menu" id="sale.report_sales_team">
+            <field name="groups_id" eval="[(6,0,[ref('make_invisible')])]"/>
+        </record>
+        <record model="ir.ui.menu" id="sale.menu_sale_invoicing">
+            <field name="groups_id" eval="[(6,0,[ref('make_invisible')])]"/>
+        </record>
+        <record model="ir.ui.menu" id="sale.menu_sale_quotations">
+            <field name="groups_id" eval="[(6,0,[ref('make_invisible')])]"/>
+        </record>
     </data>
 
 </odoo>

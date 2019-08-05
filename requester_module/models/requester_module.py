@@ -9,7 +9,7 @@ class RequesterModule(models.Model):
 
     name = fields.Char('My Sequence')
     state = fields.Selection(string="State", selection=[('draft', 'Draft'), ('send_request', 'Send Request'),
-                                                        ('confirm_request', 'Confirm Request')],default='draft',
+                                                        ('confirm_request', 'Confirm Request')], default='draft',
                                     track_visibility='always', track_sequence=4)
     price = fields.Float(string="Price", track_visibility='always', track_sequence=2)
     discount = fields.Float(string="Discount", track_visibility='always', track_sequence=3)
@@ -40,4 +40,9 @@ class RequesterModule(models.Model):
         self.state = 'confirm_request'
         templ_id = self.env.ref('requester_module.example_email_template')
         self.env['mail.template'].browse(templ_id.id).send_mail(self.id)
+
+    @api.multi
+    def create_customer(self):
+        print("ABC")
+
 

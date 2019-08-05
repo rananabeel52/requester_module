@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="res_partner_form" model="ir.ui.view">
+            <field name="name">res_partner_form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page[1]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//notebook/page[@name='internal_notes']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//notebook/page[@name='sales_purchases']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//page[@name='sales_purchases']" position="after">
+                    <page name="customer_contract" string="Customer Contract">
+                    </page>
+                </xpath>
+                <xpath expr="//notebook/page[@name='customer_contract']" position="inside">
+                    <field name="service_ids">
+                        <tree editable="bottom">
+                            <field name="service_id"/>
+                            <field name="description"/>
+                            <field name="product_uom_qty"/>
+                            <field name="price"/>
+                            <field name="discount"/>
+                            <field name="total_price"/>
+                            <field name="res_partner_id" invisible="1"/>
+                        </tree>
+                    </field>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
